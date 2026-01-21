@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Store | One-Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body class="bg-white text-gray-900 font-sans">
+
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="text-2xl font-black tracking-tighter text-indigo-600">VELOCITY</div>
+                <div class="flex items-center space-x-4">
+                    <!-- <button class="p-2 hover:bg-gray-100 rounded-full"><i
+                            class="fa-solid fa-magnifying-glass"></i></button> -->
+                    <button class="p-2 hover:bg-gray-100 rounded-full relative" onclick="toggleCart()">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span id="cartNotification"
+                            class="absolute top-0 right-0 bg-indigo-600 text-white text-[10px] px-1.5 rounded-full">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="cart-sidebar" class="fixed inset-0 bg-black/50 hidden z-[60]">
+        <div class="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-xl p-6 overflow-y-auto">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-2xl font-bold">Your Bag</h2>
+                <button onclick="toggleCart()" class="text-2xl">&times;</button>
+            </div>
+            <div id="cart-items" class="space-y-4"></div>
+            <div class="border-t mt-8 pt-6">
+                <div class="flex justify-between text-xl font-bold mb-6">
+                    <span>Total</span>
+                    <span id="cart-total">0</span>
+                </div>
+                <button id="byProduct"
+                    class="w-full bg-black text-white py-4 rounded-full font-semibold hover:bg-slate-800">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <section id="home" class="relative bg-gray-900 h-[80vh] flex items-center overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1600&q=80"
+            class="absolute inset-0 w-full h-full object-cover opacity-50" alt="Hero Background">
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6">Styles that <br>Define You.</h1>
+            <p class="text-lg md:text-xl mb-8 max-w-lg text-gray-300">Experience the
+                intersection of comfort and
+                high-fashion. Our new winter drop is officially live.</p>
+            <a href="#shop"
+                class="inline-block bg-white text-gray-900 px-8 py-4 rounded-full font-bold hover:bg-indigo-600 hover:text-white transition-all transform hover:scale-105">
+                Shop Collection
+            </a>
+        </div>
+    </section>
+
+    <section id="categories" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-10">Popular Categories</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="relative h-64 group overflow-hidden rounded-2xl cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1516762689617-e1cffcef479d?auto=format&fit=crop&w=600&q=80"
+                        class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/30 flex items-end p-6">
+                        <span class="text-white text-xl font-bold">Woman's Wear</span>
+                    </div>
+                </div>
+                <div class="relative h-64 group overflow-hidden rounded-2xl cursor-pointer">
+                    <img src="https://images.pexels.com/photos/265906/pexels-photo-265906.jpeg?cs=srgb&dl=pexels-pixabay-265906.jpg&fm=jpg"
+                        class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/30 flex items-end p-6">
+                        <span class="text-white text-xl font-bold">Jewellary</span>
+                    </div>
+                </div>
+                <div class="relative h-64 group overflow-hidden rounded-2xl cursor-pointer">
+                    <img src="https://png.pngtree.com/thumb_back/fh260/background/20241014/pngtree-flat-lay-men-fashion-casual-outfits-with-accessories-on-gray-background-image_16382960.jpg"
+                        class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/30 flex items-end p-6">
+                        <span class="text-white text-xl font-bold">Man's Wear</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="shop" class="py-20">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-4xl font-bold">Featured Products</h2>
+                    <p class="text-gray-500 mt-2">Handpicked items for your daily rotation.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10" id="featureProduct"></div>
+
+            <div class="flex justify-center mt-10">
+                <button id="loadMoreBtn"
+                    class="px-8 py-3 bg-black text-white rounded-full font-medium hover:bg-gray-800 transition duration-300">
+                    Load More
+                </button>
+            </div>
+        </div>
+    </section>
+
+
+    <footer id="about" class="bg-gray-900 text-gray-400 py-16 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div>
+                <h4 class="text-white text-lg font-bold mb-6">VELOCITY</h4>
+                <p class="text-sm leading-relaxed">Redefining modern retail since 2024. Quality products, ethical
+                    sourcing, and lightning-fast delivery.</p>
+            </div>
+            <div>
+                <h4 class="text-white text-md font-bold mb-6">Shop</h4>
+                <ul class="space-y-4 text-sm">
+                    <li><a href="#" class="hover:text-white transition">New Arrivals</a></li>
+                    <li><a href="#" class="hover:text-white transition">Bestsellers</a></li>
+                    <li><a href="#" class="hover:text-white transition">Sale</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white text-md font-bold mb-6">Support</h4>
+                <ul class="space-y-4 text-sm">
+                    <li><a href="#" class="hover:text-white transition">Shipping Policy</a></li>
+                    <li><a href="#" class="hover:text-white transition">Returns & Exchanges</a></li>
+                    <li><a href="#" class="hover:text-white transition">FAQs</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white text-md font-bold mb-6">Newsletter</h4>
+                <div class="flex">
+                    <input type="email" placeholder="Email address"
+                        class="bg-gray-800 border-none rounded-l-md px-4 py-2 w-full focus:ring-1 focus:ring-indigo-500 outline-none">
+                    <button
+                        class="bg-indigo-600 text-white px-4 py-2 rounded-r-md hover:bg-indigo-700 transition">Join</button>
+                </div>
+                <div class="mt-6 flex space-x-4 text-xl">
+                    <i class="fa-brands fa-instagram hover:text-white cursor-pointer"></i>
+                    <i class="fa-brands fa-twitter hover:text-white cursor-pointer"></i>
+                    <i class="fa-brands fa-facebook hover:text-white cursor-pointer"></i>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 mt-16 pt-8 border-t border-gray-800 text-center text-xs">
+            © 2026 VELOCITY Store. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
